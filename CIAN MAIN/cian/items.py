@@ -21,3 +21,20 @@ class FlatItem(scrapy.Item): # Квартира
     view_from_windows = scrapy.Field()
     finish = scrapy.Field()
     layout = scrapy.Field()
+
+    price = scrapy.Field()
+    price_per_meter = scrapy.Field()
+
+    address = scrapy.Field()
+    station = scrapy.Field()
+    time = scrapy.Field()
+
+    square = scrapy.Field()
+    living_space = scrapy.Field()
+    kitchen = scrapy.Field()
+    floor = scrapy.Field()
+    max_floor = scrapy.Field()
+    deadline = scrapy.Field()
+    built = scrapy.Field()
+
+    link = scrapy.Field()
