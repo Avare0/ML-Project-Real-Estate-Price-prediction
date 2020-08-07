@@ -8,6 +8,7 @@
 import scrapy
 from scrapy.loader.processors import MapCompose, TakeFirst
 
-class CianItem(scrapy.Item):
+class FlatItem(scrapy.Item): # Квартира
     _id = scrapy.Field()
     name = scrapy.Field(output_processor=TakeFirst())
+
