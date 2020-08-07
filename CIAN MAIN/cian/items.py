@@ -8,33 +8,36 @@
 import scrapy
 from scrapy.loader.processors import MapCompose, TakeFirst
 
+def delete_symbols(addr):
+    return addr.replace(u'\xa0', u'')
+
 
 class FlatItem(scrapy.Item): # Квартира
     _id = scrapy.Field()
     name = scrapy.Field(output_processor=TakeFirst())
-    type = scrapy.Field()
-    rooms_area = scrapy.Field()
-    bathroom = scrapy.Field()
-    ceiling_height = scrapy.Field()
-    repair = scrapy.Field()
-    balcony = scrapy.Field()
-    view_from_windows = scrapy.Field()
-    finish = scrapy.Field()
+    type = scrapy.Field(output_processor=TakeFirst())
+    rooms_area = scrapy.Field(output_processor=TakeFirst())
+    bathroom = scrapy.Field(output_processor=TakeFirst())
+    ceiling_height = scrapy.Field(output_processor=TakeFirst())
+    repair = scrapy.Field(output_processor=TakeFirst())
+    balcony = scrapy.Field(output_processor=TakeFirst())
+    view_from_windows = scrapy.Field(output_processor=TakeFirst())
+    finish = scrapy.Field(output_processor=TakeFirst())
     layout = scrapy.Field()
 
-    price = scrapy.Field()
-    price_per_meter = scrapy.Field()
+    price = scrapy.Field(input_processor=MapCompose(delete_symbols),output_processor=TakeFirst())
+    price_per_meter = scrapy.Field(input_processor=MapCompose(delete_symbols),output_processor=TakeFirst())
 
-    address = scrapy.Field()
-    station = scrapy.Field()
-    time = scrapy.Field()
+    address = scrapy.Field(output_processor=TakeFirst())
+    station = scrapy.Field(output_processor=TakeFirst())
+    time = scrapy.Field(output_processor=TakeFirst())
 
-    square = scrapy.Field()
-    living_space = scrapy.Field()
-    kitchen = scrapy.Field()
-    floor = scrapy.Field()
-    max_floor = scrapy.Field()
-    deadline = scrapy.Field()
-    built = scrapy.Field()
+    square = scrapy.Field(input_processor=MapCompose(delete_symbols),output_processor=TakeFirst())
+    living_space = scrapy.Field(input_processor=MapCompose(delete_symbols), output_processor=TakeFirst())
+    kitchen = scrapy.Field(input_processor=MapCompose(delete_symbols),output_processor=TakeFirst())
+    floor = scrapy.Field(output_processor=TakeFirst())
+    max_floor = scrapy.Field(output_processor=TakeFirst())
+    deadline = scrapy.Field(output_processor=TakeFirst())
+    built = scrapy.Field(output_processor=TakeFirst())
 
-    link = scrapy.Field()
+    link = scrapy.Field(output_processor=TakeFirst())

@@ -37,7 +37,8 @@ class CianSpider(scrapy.Spider):
 
         #Название и адрес
         loader.add_css('name', 'h1[data-name="OfferTitle"]::text')
-        loader.add_css(fields['Адрес'], 'address a::text')
+        addr = response.xpath('//address/a/text()').extract()
+        loader.add_value(fields['Адрес'], ','.join(addr))
 
         # Метро
         stations = response.xpath('//a[@class="a10a3f92e9--underground_link--AzxRC"]/text()').extract()
