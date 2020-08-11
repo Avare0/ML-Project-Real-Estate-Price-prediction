@@ -9,7 +9,7 @@ from pymongo import MongoClient
 class CianPipeline:
     def __init__(self):
         client = MongoClient('localhost', 27017)
-        self.mongo_base = client.cian
+        self.mongo_base = client.flats
 
     def process_item(self, item, spider):
         coll = self.mongo_base['flats']

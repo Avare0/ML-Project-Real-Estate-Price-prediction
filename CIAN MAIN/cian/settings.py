@@ -50,7 +50,7 @@ ROBOTSTXT_OBEY = False
 #SPIDER_MIDDLEWARES = {
 #    'cian.middlewares.CianSpiderMiddleware': 543,
 #}
-
+DOWNLOAD_DELAY = 1.5
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
