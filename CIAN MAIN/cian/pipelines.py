@@ -12,6 +12,6 @@ class CianPipeline:
         self.mongo_base = client.flats
 
     def process_item(self, item, spider):
-        coll = self.mongo_base['flats']
+        coll = self.mongo_base['cian']
         coll.insert_one(item)
         return item

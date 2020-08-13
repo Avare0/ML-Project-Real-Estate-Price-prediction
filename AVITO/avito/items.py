@@ -20,19 +20,23 @@ def take_last_4(s):
 def takesecond(a):
     return a[1]
 
+def delete_space(s):
+    return s[:-1]
+
+
 class FlatItem(scrapy.Item): # Квартира
     _id = scrapy.Field()
     source = scrapy.Field(output_processor = TakeFirst())
 
 
     name = scrapy.Field(output_processor = TakeFirst())
-    type = scrapy.Field(output_processor = TakeFirst())
+    type = scrapy.Field(output_processor = TakeFirst(), input_processor = MapCompose(delete_space))
     rooms_area = scrapy.Field()
     bathroom = scrapy.Field()
     ceiling_height = scrapy.Field()
     repair = scrapy.Field()
     balcony = scrapy.Field()
-    view_from_windows = scrapy.Field()
+    view_from_windows = scrapy.Field(output_processor = TakeFirst(), input_processor = MapCompose(delete_space))
     finish = scrapy.Field()
     layout = scrapy.Field()
 
@@ -44,10 +48,10 @@ class FlatItem(scrapy.Item): # Квартира
     time = scrapy.Field(output_processor = TakeFirst())
 
     square = scrapy.Field(output_processor = TakeFirst(), input_processor = MapCompose(str,delete_symbols, delete_meters, float))
-    living_space = scrapy.Field()
-    kitchen = scrapy.Field()
-    floor = scrapy.Field(output_processor = TakeFirst())
-    max_floor = scrapy.Field(output_processor = TakeFirst())
+    living_space = scrapy.Field(input_processor = MapCompose(delete_symbols, delete_meters, float), output_processor = TakeFirst())
+    kitchen = scrapy.Field(input_processor = MapCompose(delete_symbols, delete_meters, float), output_processor = TakeFirst())
+    floor = scrapy.Field(output_processor = TakeFirst(), input_processor = MapCompose(int))
+    max_floor = scrapy.Field(output_processor = TakeFirst(), input_processor = MapCompose(int))
     deadline = scrapy.Field()
     built = scrapy.Field()
 

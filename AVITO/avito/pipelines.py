@@ -12,6 +12,6 @@ class AvitoPipeline:
         self.mongo_base = client.flats
 
     def process_item(self, item, spider):
-        coll = self.mongo_base['flats']
+        coll = self.mongo_base['avito']
         coll.insert_one(item)
         return item

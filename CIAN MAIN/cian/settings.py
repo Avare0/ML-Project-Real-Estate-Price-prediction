@@ -19,7 +19,7 @@ NEWSPIDER_MODULE = 'cian.spiders'
 #USER_AGENT = 'cian (+http://www.yourdomain.com)'
 
 # Obey robots.txt rules
-USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.96 YaBrowser/20.4.0.1461 Yowser/2.5 Yptp/1.23 Safari/537.36'
+USER_AGENT = 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/84.0.4147.105 Safari/537.36'
 ROBOTSTXT_OBEY = False
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
@@ -50,7 +50,7 @@ ROBOTSTXT_OBEY = False
 #SPIDER_MIDDLEWARES = {
 #    'cian.middlewares.CianSpiderMiddleware': 543,
 #}
-DOWNLOAD_DELAY = 1.5
+DOWNLOAD_DELAY = 2
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #DOWNLOADER_MIDDLEWARES = {
