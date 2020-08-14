@@ -1,5 +1,5 @@
 from flask import Flask,request, render_template
-from predictor import predict, train, get_data
+from predictor import predict, train_model, get_data
 
 app = Flask(__name__, static_url_path='/static')
 
@@ -45,7 +45,7 @@ def main():
     if request.method == 'POST':
         get_data(data_predict, request)
         if msg != -1:
-            msg = predict(data_predict)[0]
+            msg = predict(data_predict)
             if msg == -1:
                 msg = ['NO SUCH STATION EXISTS']
             else:
@@ -58,8 +58,11 @@ def train():
     thanks = False
     if request.method == "POST":
         get_data(data_predict, request)
-        data_predict['price'] = request.form.get('price')
+        data_predict['price'] = int(request.form.get('price'))
         thanks = True
+        if not train_model(data_predict):
+            thanks = True
+        
     return render_template('train.html', thanks = thanks)
 
 @app.route('/about')

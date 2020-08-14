@@ -12,7 +12,21 @@ def predict(data_predict):
     price = model.predict(data)
     return price
 
-def train():
+def train_model(new_data):
+    stations = pd.read_csv('stations.csv')
+    try:
+        new_data['station'] = stations.loc[stations['Metro'] == new_data['station']]['ind'].tolist()[0]
+    except:
+        return 1
+    params = {
+        'n_estimators':500,
+        'max_depth': 12,
+        'min_child_weight': 1,
+        'learning_rate': 0.15
+    }
+    new_data = pd.DataFrame(new_data, index =[0])
+    new_model = lgb.train(params, lgb.Dataset(new_data.drop('price', axis = 1), new_data['price']), init_model='model')
+    new_model.save_model('model')
     return 0
 
 def get_data(data_predict, request):
